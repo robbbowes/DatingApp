@@ -15,36 +15,28 @@ export class TestErrorsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  get404Error() {
-    this.http.get(this.baseUrl + 'buggy/not-found').subscribe(response => {
+  private getHelper(url: string) {
+    this.http.get(this.baseUrl + url).subscribe(response => {
       console.log(response);
     }, error => {
       console.log(error);
     })
+  }
+
+  get404Error() {
+    this.getHelper('buggy/not-found');
   }
 
   get400Error() {
-    this.http.get(this.baseUrl + 'buggy/bad-request').subscribe(response => {
-      console.log(response);
-    }, error => {
-      console.log(error);
-    })
+    this.getHelper('buggy/bad-request');
   }
 
   get500Error() {
-    this.http.get(this.baseUrl + 'buggy/server-error').subscribe(response => {
-      console.log(response);
-    }, error => {
-      console.log(error);
-    })
+    this.getHelper('buggy/server-error');
   }
 
   get401Error() {
-    this.http.get(this.baseUrl + 'buggy/auth').subscribe(response => {
-      console.log(response);
-    }, error => {
-      console.log(error);
-    })
+    this.getHelper('buggy/auth');
   }
 
   get400ValidationError() {
