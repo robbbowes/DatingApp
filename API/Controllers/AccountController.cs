@@ -31,7 +31,7 @@ namespace API.Controllers
             {
                 UserName = registerDto.UserName.ToLower(),
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
-                Passwordsalt = hmac.Key
+                PasswordSalt = hmac.Key
             };
 
             _context.Users.Add(user);
@@ -51,7 +51,7 @@ namespace API.Controllers
 
             if (user == null) return Unauthorized("Invalid username or password");
 
-            using var hmac = new HMACSHA512(user.Passwordsalt);
+            using var hmac = new HMACSHA512(user.PasswordSalt);
 
             var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));
 
