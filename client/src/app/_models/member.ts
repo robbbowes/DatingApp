@@ -3,11 +3,12 @@ import { Photo } from './photo';
 export interface Member {
     id: number;
     userName: string;
-    gender: string;
-    dateOfBirth: string;
+    photoUrl: string;
+    age: number;
     knownAs: string;
-    created: string;
+    dateCreated: string;
     lastActive: string;
+    gender: string;
     introduction: string;
     lookingFor: string;
     interests: string;
